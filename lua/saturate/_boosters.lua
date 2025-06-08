@@ -34,7 +34,7 @@ end
 function M.palette(palette, sat_multiplier, light_delta)
   local result = {}
   for key, hex in pairs(palette) do
-    result[key] = conv.boost_hex(hex, sat_multiplier, light_delta)
+    result[key] = M.hex(hex, sat_multiplier, light_delta)
   end
   return result
 end
