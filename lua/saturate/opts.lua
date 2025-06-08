@@ -1,16 +1,26 @@
 --- Module for managing saturate.nvim options.
 local M = {}
 
+---@class saturate.Palette: table<string, string>
+
 ---@class saturate.Opts
----@field saturation number
----@field light_delta number
+---@field saturation number The initial saturation value.
+---@field saturation_step number The step value for increasing the saturation.
+---@field light_delta number The initial light delta value.
+---@field light_delta_step number The step value for increasing the light delta.
+---@field palette saturate.Palette The color palette to adjust.
+---@field after function(saturate.Palette) A function to execute after adjusting the palette.
 M.default = {
   saturation = 1,
-  light_delta = 0.08
+  saturation_step = 0.2,
+  light_delta = 0.08,
+  light_delta_step = 0.02,
+  palette = {},
+  after = function(palette) end
 }
 
 ---@type saturate.Opts
-local opts = M.default
+local opts = vim.deepcopy(M.default)
 
 --- Get the current options.
 ---@return table The options table.
