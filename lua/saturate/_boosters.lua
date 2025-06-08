@@ -20,7 +20,7 @@ function M.hex(hex, saturation_multiplier, light_delta)
   end
 
   local r2, g2, b2 = conv.hsl_to_rgb(h, s2, l2)
-  return M.rgb_to_hex(r2, g2, b2)
+  return conv.rgb_to_hex(r2, g2, b2)
 end
 
 --- Apply saturation boost and lightness adjustment to a color palette
