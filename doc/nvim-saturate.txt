@@ -3,29 +3,31 @@
 ==============================================================================
 Table of Contents                            *nvim-saturate-table-of-contents*
 
-1. nvim-saturate                                 |nvim-saturate-nvim-saturate|
-  - Features                            |nvim-saturate-nvim-saturate-features|
-  - Installation                    |nvim-saturate-nvim-saturate-installation|
-  - Configuration                  |nvim-saturate-nvim-saturate-configuration|
-  - Commands                            |nvim-saturate-nvim-saturate-commands|
-  - How It Works                    |nvim-saturate-nvim-saturate-how-it-works|
-  - Contributing                    |nvim-saturate-nvim-saturate-contributing|
-  - License                              |nvim-saturate-nvim-saturate-license|
+1. README                                               |nvim-saturate-readme|
+2. Features                                           |nvim-saturate-features|
+3. Installation                                   |nvim-saturate-installation|
+4. Configuration                                 |nvim-saturate-configuration|
+5. Commands                                           |nvim-saturate-commands|
+6. How It Works                                   |nvim-saturate-how-it-works|
+7. Contributing                                   |nvim-saturate-contributing|
+8. License                                             |nvim-saturate-license|
 
 ==============================================================================
-1. nvim-saturate                                 *nvim-saturate-nvim-saturate*
+1. README                                               *nvim-saturate-readme*
 
 Adjust your Neovim colorscheme saturation and lightness on the fly.
 
 
-FEATURES                                *nvim-saturate-nvim-saturate-features*
+==============================================================================
+2. Features                                           *nvim-saturate-features*
 
 - Dynamically modify colorscheme saturation
 - Adjust lightness based on color value
 - Step-based incremental adjustments
 
 
-INSTALLATION                        *nvim-saturate-nvim-saturate-installation*
+==============================================================================
+3. Installation                                   *nvim-saturate-installation*
 
 Using lazy.nvim <https://github.com/folke/lazy.nvim>:
 
@@ -41,7 +43,8 @@ Using lazy.nvim <https://github.com/folke/lazy.nvim>:
 <
 
 
-CONFIGURATION                      *nvim-saturate-nvim-saturate-configuration*
+==============================================================================
+4. Configuration                                 *nvim-saturate-configuration*
 
 The plugin provides the following defaults:
 
@@ -100,7 +103,8 @@ the colors are to dim for me, so I make the colors more vivid as follows:
 <
 
 
-COMMANDS                                *nvim-saturate-nvim-saturate-commands*
+==============================================================================
+5. Commands                                           *nvim-saturate-commands*
 
 For all commands below, the arguments are optional. If not provided, the values
 from the config are used.
@@ -139,7 +143,8 @@ Decrease lightness adjustment using default step:
 <
 
 
-HOW IT WORKS                        *nvim-saturate-nvim-saturate-how-it-works*
+==============================================================================
+6. How It Works                                   *nvim-saturate-how-it-works*
 
 The plugin:
 
@@ -153,13 +158,15 @@ The plugin:
 5. Applies modified palette via your `after` callback
 
 
-CONTRIBUTING                        *nvim-saturate-nvim-saturate-contributing*
+==============================================================================
+7. Contributing                                   *nvim-saturate-contributing*
 
 Your contributions are welcome. Read the Contributing Guidelines
 <./CONTRIBUTING.md>.
 
 
-LICENSE                                  *nvim-saturate-nvim-saturate-license*
+==============================================================================
+8. License                                             *nvim-saturate-license*
 
 MIT License <./LICENCE>
 
