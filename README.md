@@ -1,14 +1,14 @@
-# nvim-saturate
+# README
 
 Adjust your Neovim colorscheme saturation and lightness on the fly.
 
-## Features
+# Features
 
 - Dynamically modify colorscheme saturation
 - Adjust lightness based on color value
 - Step-based incremental adjustments
 
-## Installation
+# Installation
 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
@@ -23,7 +23,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 }
 ```
 
-## Configuration
+# Configuration
 
 The plugin provides the following defaults:
 
@@ -65,7 +65,7 @@ require("saturate").setup({
 })
 ```
 
-## Commands
+# Commands
 
 For all commands below, the arguments are optional. If not provided, the values from the config are used.
 
@@ -95,7 +95,7 @@ Decrease lightness adjustment using default step:
 :DecrementLightDelta
 ```
 
-## How It Works
+# How It Works
 
 The plugin:
 
@@ -107,10 +107,10 @@ The plugin:
 4. Converts back: HSL → RGB → hex
 5. Applies modified palette via your `after` callback
 
-## Contributing
+# Contributing
 
 Your contributions are welcome. Read the [Contributing Guidelines](./CONTRIBUTING.md).
 
-## License
+# License
 
 [MIT License](./LICENCE)
