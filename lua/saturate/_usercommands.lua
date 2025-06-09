@@ -1,20 +1,19 @@
 local M = {}
 local commands = require("saturate.commands")
 
---- Create user commands for saturate.nvim
-function M.setup()
+local create_saturate_command = function()
   --- Accepts 0, 1, or 2 arguments: saturation, and light_delta, respectively
   vim.api.nvim_create_user_command('Saturate', function(opts)
-    local saturation, light_delta = opts.fargs[1], opts.fargs[2]
+    local saturation, light_delta
     if saturation then
-      saturation = tonumber(saturation)
+      saturation = tonumber(opts.fargs[1])
       if not saturation then
         vim.notify("Invalid saturation: must be a number", vim.log.levels.ERROR)
         return
       end
     end
     if light_delta then
-      light_delta = tonumber(light_delta)
+      light_delta = tonumber(opts.fargs[2])
       if not light_delta then
         vim.notify("Invalid light delta: must be a number", vim.log.levels.ERROR)
         return
@@ -25,9 +24,13 @@ function M.setup()
       light_delta = light_delta
     })
   end, { nargs = "*", desc = "Set saturation and light delta (or use the default if not provided)" })
+end
 
-  -- IncrementSaturation command
-  vim.api.nvim_create_user_command('IncrementSaturation', function(opts)
+--- Helper function to create a step-based command
+---@param command_function fun(step: number|nil) The command function to call with the step
+---@return function The function that handles the user command
+local function create_step_command(command_function)
+  return function(opts)
     local step = nil
     if opts.args ~= "" then
       step = tonumber(opts.args)
@@ -36,47 +39,18 @@ function M.setup()
         return
       end
     end
-    commands.increment_saturation(step)
-  end, { nargs = '?', desc = "Increment saturation by step (or default step if not provided)" })
+    command_function(step)
+  end
+end
 
-  -- DecrementSaturation command
-  vim.api.nvim_create_user_command('DecrementSaturation', function(opts)
-    local step = nil
-    if opts.args ~= "" then
-      step = tonumber(opts.args)
-      if not step then
-        vim.notify("Invalid step: must be a number", vim.log.levels.ERROR)
-        return
-      end
-    end
-    commands.decrement_saturation(step)
-  end, { nargs = '?', desc = "Decrement saturation by step (or default step if not provided)" })
-
-  -- IncrementLightDelta command
-  vim.api.nvim_create_user_command('IncrementLightDelta', function(opts)
-    local step = nil
-    if opts.args ~= "" then
-      step = tonumber(opts.args)
-      if not step then
-        vim.notify("Invalid step: must be a number", vim.log.levels.ERROR)
-        return
-      end
-    end
-    commands.increment_light_delta(step)
-  end, { nargs = '?', desc = "Increment light delta by step (or default step if not provided)" })
-
-  -- DecrementLightDelta command
-  vim.api.nvim_create_user_command('DecrementLightDelta', function(opts)
-    local step = nil
-    if opts.args ~= "" then
-      step = tonumber(opts.args)
-      if not step then
-        vim.notify("Invalid step: must be a number", vim.log.levels.ERROR)
-        return
-      end
-    end
-    commands.decrement_light_delta(step)
-  end, { nargs = '?', desc = "Decrement light delta by step (or default step if not provided)" })
+--- Create user commands for saturate.nvim
+function M.setup()
+  -- Step-based commands using helper function
+  create_saturate_command()
+  vim.api.nvim_create_user_command('IncrementSaturation', create_step_command(commands.increment_saturation), { nargs = '?', desc = "Increment saturation by step (or default step if not provided)" })
+  vim.api.nvim_create_user_command('DecrementSaturation', create_step_command(commands.decrement_saturation), { nargs = '?', desc = "Decrement saturation by step (or default step if not provided)" })
+  vim.api.nvim_create_user_command('IncrementLightDelta', create_step_command(commands.increment_light_delta), { nargs = '?', desc = "Increment light delta by step (or default step if not provided)" })
+  vim.api.nvim_create_user_command('DecrementLightDelta', create_step_command(commands.decrement_light_delta), { nargs = '?', desc = "Decrement light delta by step (or default step if not provided)" })
 end
 
 return M
