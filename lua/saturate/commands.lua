@@ -40,6 +40,7 @@ end
 ---@param step? number The amount to subtract from the current saturation (can be negative). If not provided, uses state.saturation_step.
 ---@param palette? saturate.Palette The palette to use. If not provided, uses the current palette.
 function M.decrement_saturation(step, palette)
+  step = step or state.saturation_step or config.opts.saturation_step
   return M.increment_saturation(-step, palette)
 end
 
@@ -58,6 +59,7 @@ end
 ---@param step? number The amount to subtract from the current light_delta (can be negative). If not provided, uses state.light_delta_step.
 ---@param palette? saturate.Palette The palette to use. If not provided, uses the current palette.
 function M.decrement_light_delta(step, palette)
+  step = step or state.light_delta_step or config.opts.light_delta_step
   return M.increment_light_delta(-step, palette)
 end
 

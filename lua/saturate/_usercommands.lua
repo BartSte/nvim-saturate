@@ -3,6 +3,29 @@ local commands = require("saturate.commands")
 
 --- Create user commands for saturate.nvim
 function M.setup()
+  --- Accepts 0, 1, or 2 arguments: saturation, and light_delta, respectively
+  vim.api.nvim_create_user_command('Saturate', function(opts)
+    local saturation, light_delta = opts.fargs[1], opts.fargs[2]
+    if saturation then
+      saturation = tonumber(saturation)
+      if not saturation then
+        vim.notify("Invalid saturation: must be a number", vim.log.levels.ERROR)
+        return
+      end
+    end
+    if light_delta then
+      light_delta = tonumber(light_delta)
+      if not light_delta then
+        vim.notify("Invalid light delta: must be a number", vim.log.levels.ERROR)
+        return
+      end
+    end
+    commands.apply({
+      saturation = saturation,
+      light_delta = light_delta
+    })
+  end, { nargs = "*", desc = "Set saturation and light delta (or use the default if not provided)" })
+
   -- IncrementSaturation command
   vim.api.nvim_create_user_command('IncrementSaturation', function(opts)
     local step = nil
