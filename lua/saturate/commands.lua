@@ -1,6 +1,7 @@
 local M = {}
 local boosters = require("saturate._boosters")
 local config = require("saturate.config")
+local notify = require("saturate._notify")
 
 -- Unique notification IDs for each setting
 local NOTIFY_ID = 1000
@@ -20,7 +21,7 @@ end
 
 --- Notifies the user of the current saturation and light_delta.
 function M.notify()
-  vim.notify(string.format("Saturation: %.2f\nLight delta: %.2f", state.saturation, state.light_delta),
+  notify(string.format("Saturation: %.2f\nLight delta: %.2f", state.saturation, state.light_delta),
     vim.log.levels.INFO, { id = NOTIFY_ID, replace = true }
   )
 end

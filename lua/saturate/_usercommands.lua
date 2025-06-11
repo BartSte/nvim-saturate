@@ -1,5 +1,6 @@
 local M = {}
 local commands = require("saturate.commands")
+local notify = require("saturate._notify")
 
 local create_saturate_command = function()
   --- Accepts 0, 1, or 2 arguments: saturation, and light_delta, respectively
@@ -16,13 +17,13 @@ local create_saturate_command = function()
 
     if saturation then
       if not saturation then
-        vim.notify("Invalid saturation: must be a number", vim.log.levels.ERROR)
+        notify.notify("Invalid saturation: must be a number", vim.log.levels.ERROR)
         return
       end
     end
     if light_delta then
       if not light_delta then
-        vim.notify("Invalid light delta: must be a number", vim.log.levels.ERROR)
+        notify.notify("Invalid light delta: must be a number", vim.log.levels.ERROR)
         return
       end
     end
@@ -42,7 +43,7 @@ local function create_step_command(command_function)
     if opts.args ~= "" then
       step = tonumber(opts.args)
       if not step then
-        vim.notify("Invalid step: must be a number", vim.log.levels.ERROR)
+        notify("Invalid step: must be a number", vim.log.levels.ERROR)
         return
       end
     end
