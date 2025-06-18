@@ -17,13 +17,13 @@ local create_saturate_command = function()
 
     if saturation then
       if not saturation then
-        notify.notify("Invalid saturation: must be a number", vim.log.levels.ERROR)
+        notify("Invalid saturation: must be a number", vim.log.levels.ERROR)
         return
       end
     end
     if light_delta then
       if not light_delta then
-        notify.notify("Invalid light delta: must be a number", vim.log.levels.ERROR)
+        notify("Invalid light delta: must be a number", vim.log.levels.ERROR)
         return
       end
     end
