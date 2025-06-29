@@ -89,6 +89,7 @@ function M.hsl_to_rgb(h, s, l)
   end
 
   if s == 0 then
+    return l, l, l
   else
     local q = (l < 0.5) and (l * (1 + s)) or (l + s - l * s)
     local p = 2 * l - q
